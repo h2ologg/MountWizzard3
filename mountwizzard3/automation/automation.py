@@ -34,8 +34,8 @@ class Automation(PyQt5.QtCore.QObject):
     CYCLE = 500
     signalDestruct = PyQt5.QtCore.pyqtSignal()
 
-    UTC_1 = 'http://maia.usno.navy.mil/ser7/finals.data'
-    UTC_2 = 'http://maia.usno.navy.mil/ser7/tai-utc.dat'
+    UTC_1 = 'ftp://cddis.nasa.gov/products/iers/finals.data'
+    UTC_2 = 'ftp://cddis.nasa.gov/products/iers/tai-utc.dat'
     COMETS = 'http://www.minorplanetcenter.net/iau/MPCORB/CometEls.txt'
     COMETS_START = 102
     COMETS_END = 161

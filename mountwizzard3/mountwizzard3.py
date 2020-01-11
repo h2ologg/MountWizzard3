@@ -910,38 +910,74 @@ class MountWizzardApp(widget.MwWidget):
 
     def mountPosition1(self):
         self.mountCommandQueue.put(':PO#')
-        self.mountCommandQueue.put(':Sz{0:03d}*00#'.format(int(self.ui.le_azParkPos1.text())))
-        self.mountCommandQueue.put(':Sa+{0:02d}*00#'.format(int(self.ui.le_altParkPos1.text())))
+        az = int(self.ui.le_azParkPos1.text())
+        alt = int(self.ui.le_altParkPos1.text())
+        if alt < -5:
+            alt = -5
+        elif alt > 90:
+            alt = 90
+        self.mountCommandQueue.put(':Sz{0:03d}*00#'.format(az))
+        self.mountCommandQueue.put(':Sa+{0:02d}*00#'.format(alt))
         self.mountCommandQueue.put(':MA#')
 
     def mountPosition2(self):
+        az = int(self.ui.le_azParkPos2.text())
+        alt = int(self.ui.le_altParkPos2.text())
+        if alt < -5:
+            alt = -5
+        elif alt > 90:
+            alt = 90
         self.mountCommandQueue.put(':PO#')
-        self.mountCommandQueue.put(':Sz{0:03d}*00#'.format(int(self.ui.le_azParkPos2.text())))
-        self.mountCommandQueue.put(':Sa+{0:02d}*00#'.format(int(self.ui.le_altParkPos2.text())))
+        self.mountCommandQueue.put(':Sz{0:03d}*00#'.format(az))
+        self.mountCommandQueue.put(':Sa+{0:02d}*00#'.format(alt))
         self.mountCommandQueue.put(':MA#')
 
     def mountPosition3(self):
+        az = int(self.ui.le_azParkPos3.text())
+        alt = int(self.ui.le_altParkPos3.text())
+        if alt < -5:
+            alt = -5
+        elif alt > 90:
+            alt = 90
         self.mountCommandQueue.put(':PO#')
-        self.mountCommandQueue.put(':Sz{0:03d}*00#'.format(int(self.ui.le_azParkPos3.text())))
-        self.mountCommandQueue.put(':Sa+{0:02d}*00#'.format(int(self.ui.le_altParkPos3.text())))
+        self.mountCommandQueue.put(':Sz{0:03d}*00#'.format(az))
+        self.mountCommandQueue.put(':Sa+{0:02d}*00#'.format(alt))
         self.mountCommandQueue.put(':MA#')
 
     def mountPosition4(self):
+        az = int(self.ui.le_azParkPos4.text())
+        alt = int(self.ui.le_altParkPos4.text())
+        if alt < -5:
+            alt = -5
+        elif alt > 90:
+            alt = 90
         self.mountCommandQueue.put(':PO#')
-        self.mountCommandQueue.put(':Sz{0:03d}*00#'.format(int(self.ui.le_azParkPos4.text())))
-        self.mountCommandQueue.put(':Sa+{0:02d}*00#'.format(int(self.ui.le_altParkPos4.text())))
+        self.mountCommandQueue.put(':Sz{0:03d}*00#'.format(az))
+        self.mountCommandQueue.put(':Sa+{0:02d}*00#'.format(alt))
         self.mountCommandQueue.put(':MA#')
 
     def mountPosition5(self):
+        az = int(self.ui.le_azParkPos5.text())
+        alt = int(self.ui.le_altParkPos5.text())
+        if alt < -5:
+            alt = -5
+        elif alt > 90:
+            alt = 90
         self.mountCommandQueue.put(':PO#')
-        self.mountCommandQueue.put(':Sz{0:03d}*00#'.format(int(self.ui.le_azParkPos5.text())))
-        self.mountCommandQueue.put(':Sa+{0:02d}*00#'.format(int(self.ui.le_altParkPos5.text())))
+        self.mountCommandQueue.put(':Sz{0:03d}*00#'.format(az))
+        self.mountCommandQueue.put(':Sa+{0:02d}*00#'.format(alt))
         self.mountCommandQueue.put(':MA#')
 
     def mountPosition6(self):
+        az = int(self.ui.le_azParkPos6.text())
+        alt = int(self.ui.le_altParkPos6.text())
+        if alt < -5:
+            alt = -5
+        elif alt > 90:
+            alt = 90
         self.mountCommandQueue.put(':PO#')
-        self.mountCommandQueue.put(':Sz{0:03d}*00#'.format(int(self.ui.le_azParkPos6.text())))
-        self.mountCommandQueue.put(':Sa+{0:02d}*00#'.format(int(self.ui.le_altParkPos6.text())))
+        self.mountCommandQueue.put(':Sz{0:03d}*00#'.format(az))
+        self.mountCommandQueue.put(':Sa+{0:02d}*00#'.format(alt))
         self.mountCommandQueue.put(':MA#')
 
     def workerAscomEnvironmentSetup(self):

@@ -437,16 +437,17 @@ class INDIClient(PyQt5.QtCore.QObject):
         self.app.sharedINDIDataLock.lockForRead()
         if device in self.data['Device']:
             if 'DRIVER_INFO' in self.data['Device'][device]:
-                if int(self.data['Device'][device]['DRIVER_INFO']['DRIVER_INTERFACE']) & self.CCD_INTERFACE:
-                    self.app.INDIStatusQueue.put({'Name': 'CCD', 'value': device})
-                elif int(self.data['Device'][device]['DRIVER_INFO']['DRIVER_INTERFACE']) & self.WEATHER_INTERFACE:
-                    self.app.INDIStatusQueue.put({'Name': 'Environment', 'value': device})
-                elif int(self.data['Device'][device]['DRIVER_INFO']['DRIVER_INTERFACE']) & self.DOME_INTERFACE:
-                    self.app.INDIStatusQueue.put({'Name': 'Dome', 'value': device})
-                elif int(self.data['Device'][device]['DRIVER_INFO']['DRIVER_INTERFACE']) & self.TELESCOPE_INTERFACE:
-                    self.app.INDIStatusQueue.put({'Name': 'Telescope', 'value': device})
-                elif int(self.data['Device'][device]['DRIVER_INFO']['DRIVER_INTERFACE']) & self.AUX_INTERFACE:
-                    self.app.INDIStatusQueue.put({'Name': 'Aux', 'value': device})
+                if 'DRIVER_INTERFACE' in self.data['Device'][device]['DRIVER_INFO']:
+                    if int(self.data['Device'][device]['DRIVER_INFO']['DRIVER_INTERFACE']) & self.CCD_INTERFACE:
+                        self.app.INDIStatusQueue.put({'Name': 'CCD', 'value': device})
+                    elif int(self.data['Device'][device]['DRIVER_INFO']['DRIVER_INTERFACE']) & self.WEATHER_INTERFACE:
+                        self.app.INDIStatusQueue.put({'Name': 'Environment', 'value': device})
+                    elif int(self.data['Device'][device]['DRIVER_INFO']['DRIVER_INTERFACE']) & self.DOME_INTERFACE:
+                        self.app.INDIStatusQueue.put({'Name': 'Dome', 'value': device})
+                    elif int(self.data['Device'][device]['DRIVER_INFO']['DRIVER_INTERFACE']) & self.TELESCOPE_INTERFACE:
+                        self.app.INDIStatusQueue.put({'Name': 'Telescope', 'value': device})
+                    elif int(self.data['Device'][device]['DRIVER_INFO']['DRIVER_INTERFACE']) & self.AUX_INTERFACE:
+                        self.app.INDIStatusQueue.put({'Name': 'Aux', 'value': device})
         self.app.sharedINDIDataLock.unlock()
 
     @PyQt5.QtCore.pyqtSlot()
