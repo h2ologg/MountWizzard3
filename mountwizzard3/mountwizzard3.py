@@ -845,7 +845,7 @@ class MountWizzardApp(widget.MwWidget):
     def setHorizonLimitHigh(self):
         _text = self.ui.le_horizonLimitHigh.text()
         if len(_text) > 0:
-            _value = int(float(_text))
+            _value = int(_text)
             if _value < 0:
                 _value = 0
             elif _value > 90:
@@ -855,8 +855,8 @@ class MountWizzardApp(widget.MwWidget):
 
     def setHorizonLimitLow(self):
         _text = self.ui.le_horizonLimitLow.text()
-        if len(_text) > 0:
-            _value = int(float(_text))
+        if any(char.isdigit() for char in _text):
+            _value = int(_text)
             if _value < -5:
                 _value = -5
             elif _value > 90:
@@ -866,7 +866,7 @@ class MountWizzardApp(widget.MwWidget):
 
     def setSlewRate(self):
         _text = self.ui.le_slewRate.text()
-        if len(_text) > 0:
+        if any(char.isdigit() for char in _text):
             _value = int(_text)
             if _value < 1:
                 _value = 1
@@ -917,7 +917,7 @@ class MountWizzardApp(widget.MwWidget):
         elif alt > 90:
             alt = 90
         self.mountCommandQueue.put(':Sz{0:03d}*00#'.format(az))
-        self.mountCommandQueue.put(':Sa+{0:02d}*00#'.format(alt))
+        self.mountCommandQueue.put(':Sa{0:+03d}*00#'.format(alt))
         self.mountCommandQueue.put(':MA#')
 
     def mountPosition2(self):
@@ -929,7 +929,7 @@ class MountWizzardApp(widget.MwWidget):
             alt = 90
         self.mountCommandQueue.put(':PO#')
         self.mountCommandQueue.put(':Sz{0:03d}*00#'.format(az))
-        self.mountCommandQueue.put(':Sa+{0:02d}*00#'.format(alt))
+        self.mountCommandQueue.put(':Sa{0:+03d}*00#'.format(alt))
         self.mountCommandQueue.put(':MA#')
 
     def mountPosition3(self):
@@ -941,7 +941,7 @@ class MountWizzardApp(widget.MwWidget):
             alt = 90
         self.mountCommandQueue.put(':PO#')
         self.mountCommandQueue.put(':Sz{0:03d}*00#'.format(az))
-        self.mountCommandQueue.put(':Sa+{0:02d}*00#'.format(alt))
+        self.mountCommandQueue.put(':Sa{0:+03d}*00#'.format(alt))
         self.mountCommandQueue.put(':MA#')
 
     def mountPosition4(self):
@@ -953,7 +953,7 @@ class MountWizzardApp(widget.MwWidget):
             alt = 90
         self.mountCommandQueue.put(':PO#')
         self.mountCommandQueue.put(':Sz{0:03d}*00#'.format(az))
-        self.mountCommandQueue.put(':Sa+{0:02d}*00#'.format(alt))
+        self.mountCommandQueue.put(':Sa{0:+03d}*00#'.format(alt))
         self.mountCommandQueue.put(':MA#')
 
     def mountPosition5(self):
@@ -965,7 +965,7 @@ class MountWizzardApp(widget.MwWidget):
             alt = 90
         self.mountCommandQueue.put(':PO#')
         self.mountCommandQueue.put(':Sz{0:03d}*00#'.format(az))
-        self.mountCommandQueue.put(':Sa+{0:02d}*00#'.format(alt))
+        self.mountCommandQueue.put(':Sa{0:+03d}*00#'.format(alt))
         self.mountCommandQueue.put(':MA#')
 
     def mountPosition6(self):
@@ -977,7 +977,7 @@ class MountWizzardApp(widget.MwWidget):
             alt = 90
         self.mountCommandQueue.put(':PO#')
         self.mountCommandQueue.put(':Sz{0:03d}*00#'.format(az))
-        self.mountCommandQueue.put(':Sa+{0:02d}*00#'.format(alt))
+        self.mountCommandQueue.put(':Sa{0:+03d}*00#'.format(alt))
         self.mountCommandQueue.put(':MA#')
 
     def workerAscomEnvironmentSetup(self):
