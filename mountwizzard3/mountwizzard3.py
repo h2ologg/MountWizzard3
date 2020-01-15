@@ -845,23 +845,23 @@ class MountWizzardApp(widget.MwWidget):
     def setHorizonLimitHigh(self):
         _text = self.ui.le_horizonLimitHigh.text()
         if len(_text) > 0:
-            _value = int(_text)
+            _value = int(float(_text))
             if _value < 0:
                 _value = 0
             elif _value > 90:
                 _value = 90
-            self.mountCommandQueue.put(':Sh+{0:02d}#'.format(_value))
+            self.mountCommandQueue.put(':Sh{0:+03d}#'.format(_value))
             self.workerMountDispatcher.data['CurrentHorizonLimitHigh'] = _value
 
     def setHorizonLimitLow(self):
         _text = self.ui.le_horizonLimitLow.text()
         if len(_text) > 0:
-            _value = int(_text)
-            if _value < 0:
-                _value = 0
+            _value = int(float(_text))
+            if _value < -5:
+                _value = -5
             elif _value > 90:
                 _value = 90
-            self.mountCommandQueue.put(':So+{0:02d}#'.format(_value))
+            self.mountCommandQueue.put(':So{0:+03d}#'.format(_value))
             self.workerMountDispatcher.data['CurrentHorizonLimitLow'] = _value
 
     def setSlewRate(self):
