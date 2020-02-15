@@ -21,7 +21,10 @@ import os
 import logging
 import time
 import PyQt5
+import shutil
 import requests
+import urllib.request as ftp
+from contextlib import closing
 import queue
 import comtypes.client
 from pywinauto import Application, timings, findwindows, application
@@ -344,19 +347,24 @@ class Automation(PyQt5.QtCore.QObject):
             return True
 
     def downloadFile(self, url, filename):
-        try:
-            r = requests.get(url, stream=True)
-            if r.status_code == 200:
-                numberOfChunks = 0
+        if url.startswith('ftp'):
+            with closing(ftp.urlopen(url)) as r:
                 with open(filename, 'wb') as f:
-                    for chunk in r.iter_content(128):
-                        numberOfChunks += 1
-                        f.write(chunk)
-            self.app.messageQueue.put('Downloaded {0} Bytes\n'.format(128 * numberOfChunks))
-        except Exception as e:
-            self.logger.error('Download of {0} failed, error{1}'.format(url, e))
-            self.app.messageQueue.put('#BRDownload Error {0}\n'.format(e))
-        return
+                    shutil.copyfileobj(r, f)
+        else:
+            try:
+                r = requests.get(url, stream=True)
+                if r.status_code == 200:
+                    numberOfChunks = 0
+                    with open(filename, 'wb') as f:
+                        for chunk in r.iter_content(128):
+                            numberOfChunks += 1
+                            f.write(chunk)
+                self.app.messageQueue.put('Downloaded {0} Bytes\n'.format(128 * numberOfChunks))
+            except Exception as e:
+                self.logger.error('Download of {0} failed, error{1}'.format(url, e))
+                self.app.messageQueue.put('#BRDownload Error {0}\n'.format(e))
+            return
 
     def uploadMount(self):
         actual_work_dir = ''
