@@ -227,6 +227,7 @@ class MountStatusRunnerMedium(PyQt5.QtCore.QObject):
         try:
             if len(messageToProcess) == 0:
                 return
+            self.logger.info('Raw data from Mount: {0}'.format(messageToProcess))
             self.app.sharedMountDataLock.lockForWrite()
             valueList = messageToProcess.strip('#').split('#')
             # print(valueList)
