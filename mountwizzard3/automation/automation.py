@@ -351,6 +351,7 @@ class Automation(PyQt5.QtCore.QObject):
             with closing(ftp.urlopen(url)) as r:
                 with open(filename, 'wb') as f:
                     shutil.copyfileobj(r, f)
+            self.app.messageQueue.put('{0} downloaded\n'.format(filename))
         else:
             try:
                 r = requests.get(url, stream=True)
