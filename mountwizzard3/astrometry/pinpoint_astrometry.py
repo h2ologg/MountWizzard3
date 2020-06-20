@@ -68,6 +68,7 @@ class PinPoint:
                 elif 'USNO' in self.app.ui.le_pinpointCatalogue.text():
                     cat = 7
                 else:
+                    cat = 0
                     self.logger.info('Pinpoint catalogue could not be configured')
                     self.application['Status'] = 'ERROR'
                     self.app.messageQueue.put('#BRPinpoint catalogue could not be configured\n')
@@ -83,9 +84,8 @@ class PinPoint:
         except Exception as e:
             self.logger.info('Pinpoint could not be started, error:{0}'.format(e))
             self.application['Status'] = 'ERROR'
-        finally:
+        else:
             self.app.messageQueue.put('Catalogue path: {0}, number scheme PinPoint: {1}\n'.format(self.app.ui.le_pinpointCatalogue.text(), cat))
-            pass
 
     def stop(self):
         try:
