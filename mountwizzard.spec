@@ -32,7 +32,7 @@ WORKPATH = '../build'
 astropy_path, = astropy.__path__
 
 block_cipher = None
-pythonPath = '/Users/astro/Envs/mw3/Lib'
+pythonPath = '/Users/astro/Envs/mw3-32/Lib'
 sitePack = pythonPath + '/site-packages'
 distDir = '/Users/astro/PycharmProjects/MountWizzard3/dist'
 packageDir = '/Users/astro/PycharmProjects/MountWizzard3/mountwizzard3'
@@ -44,7 +44,7 @@ a = Analysis(['mountwizzard3/mountwizzard3.py'],
         ],
     datas=[(astropy_path, 'astropy'),
         ],
-    hiddenimports=['shelve',
+    hiddenimports=['shelve', 'numpy.lib.recfunctions',
         ],
     hookspath=[],
     runtime_hooks=[],
@@ -90,9 +90,9 @@ a.datas = [x for x in a.datas if not x[0].startswith('astropy/vo')]
 
 
 pyz = PYZ(a.pure,
-        a.zipped_data,
-        cipher=block_cipher,
-        )
+          a.zipped_data,
+          cipher=block_cipher,
+          )
 
 exe = EXE(pyz,
           a.scripts,

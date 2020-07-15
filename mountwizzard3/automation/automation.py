@@ -19,7 +19,6 @@
 ###########################################################
 import os
 import logging
-import time
 import PyQt5
 import shutil
 import requests

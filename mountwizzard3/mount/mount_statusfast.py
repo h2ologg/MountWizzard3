@@ -27,8 +27,8 @@ from astrometry import transform
 class MountStatusRunnerFast(PyQt5.QtCore.QObject):
     logger = logging.getLogger(__name__)
 
-    CONNECTION_TIMEOUT = 2000
-    CYCLE_STATUS_FAST = 750
+    CONNECTION_TIMEOUT = 3000
+    CYCLE_STATUS_FAST = 1500
     CYCLE = 250
     signalDestruct = PyQt5.QtCore.pyqtSignal()
 

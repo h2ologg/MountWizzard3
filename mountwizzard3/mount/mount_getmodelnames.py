@@ -28,7 +28,7 @@ from astrometry import transform
 class MountGetModelNames(PyQt5.QtCore.QObject):
     logger = logging.getLogger(__name__)
 
-    CONNECTION_TIMEOUT = 2000
+    CONNECTION_TIMEOUT = 3000
     CYCLE = 250
     signalDestruct = PyQt5.QtCore.pyqtSignal()
 

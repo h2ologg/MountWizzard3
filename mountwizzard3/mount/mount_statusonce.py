@@ -29,8 +29,8 @@ class MountStatusRunnerOnce(PyQt5.QtCore.QObject):
 
     signalDestruct = PyQt5.QtCore.pyqtSignal()
     CYCLE = 250
-    CYCLE_STATUS_ONCE = 500
-    CONNECTION_TIMEOUT = 2000
+    CYCLE_STATUS_ONCE = 1000
+    CONNECTION_TIMEOUT = 3000
 
     def __init__(self, app, thread, data, signalConnected, mountStatus):
         super().__init__()
