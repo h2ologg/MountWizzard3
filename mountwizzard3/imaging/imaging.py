@@ -243,7 +243,7 @@ class Imaging(PyQt5.QtCore.QObject):
             # add the coordinates to the image of the telescope if not present
             # problem is the variety of definitions and fields, which could be used
             # find e.g. https://heasarc.gsfc.nasa.gov/docs/fcg/common_dict.html
-            fitsFileHandle = pyfits.open(imageParams['Imagepath'], mode='update')
+            fitsFileHandle = pyfits.open(imageParams['Imagepath'], mode='update', ignore_missing_end=True)
             fitsHeader = fitsFileHandle[0].header
             newRA = copy.copy(imageParams['RaJ2000'])
             newDEC = copy.copy(imageParams['DecJ2000'])

@@ -305,7 +305,7 @@ class ImagesWindow(widget.MwWidget):
         self.imagePath = filename
         self.ui.le_imageFile.setText(os.path.basename(self.imagePath))
         try:
-            fitsFileHandle = pyfits.open(filename)
+            fitsFileHandle = pyfits.open(filename, ignore_missing_end=True)
             error = False
         except Exception as e:
             error = True

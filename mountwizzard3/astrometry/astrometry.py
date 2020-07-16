@@ -204,7 +204,7 @@ class Astrometry(PyQt5.QtCore.QObject):
             return
         # open the fits header and check content.
         # we need for solving "OBJCTRA", "OBJCTDEC" and "PIXSCALE" field
-        fitsFileHandle = pyfits.open(imageParams['Imagepath'])
+        fitsFileHandle = pyfits.open(imageParams['Imagepath'], ignore_missing_end=True)
         fitsHeader = fitsFileHandle[0].header
         if 'OBJCTRA' in fitsHeader:
             imageParams['RaJ2000'] = self.transform.degStringToDecimal(fitsHeader['OBJCTRA'], ' ')
